@@ -19,7 +19,9 @@ jobs:
         with:
           name: code
           path: .
-          
+
       - name: Download a single artifact
         uses: actions/download-artifact@v2
-        path: .
+        with:
+          name: code
+          path: .

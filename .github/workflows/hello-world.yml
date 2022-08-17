@@ -27,7 +27,9 @@ jobs:
         name: code
         path: .
     - name: Build app
-      run: sh ci/build-app.sh
+      run: chmod +x ci/build-app.sh && bash ci/build-app.sh
+    - name: echo
+      run: ls app/build/
     - name: Test
       run: sh ci/unit-test-app.sh
     - name: Upload Repo

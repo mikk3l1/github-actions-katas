@@ -29,7 +29,7 @@ jobs:
     - name: Build app
       run: chmod +x ci/build-app.sh && bash ci/build-app.sh
     - name: echo
-      run: ls app/build/
+      run: ls app/build/libs/
     - name: Test
       run: sh ci/unit-test-app.sh
     - name: Upload Repo

@@ -15,7 +15,7 @@ jobs:
         run: sh ci/unit-test-app.sh
 
       - name: Upload Repo
-        uses: actions/update-artifact@v2
+        uses: actions/upload-artifact@v2
         with:
           name: code
           path: .

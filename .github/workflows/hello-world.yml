@@ -35,18 +35,17 @@ jobs:
       with:
         name: code
         path: .
-
-    - name: Download a single artifact
-      uses: actions/download-artifact@v2
+    - name: Upload Jar
+      uses: actions/upload-artifact@v2
       with:
-        name: code
-        path: .
+        name: build
+        path: app/build/libs/app-1.0-all.jar
 
   Docker-image:
     runs-on: ubuntu-latest
     needs: [Build]
     steps:
-    - name: Download build
+    - name: Download code
       uses: actions/download-artifact@v1
       with:
         name: code

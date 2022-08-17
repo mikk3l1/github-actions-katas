@@ -1,28 +1,41 @@
-name: Docker image
+name: JAVA CI
 on: push
 jobs:
-  my-job:
+  Clone-down:
     runs-on: ubuntu-latest
     container: gradle:6-jdk11
     steps:
-      - name: Clone-down
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
+    - name: Upload Repo
+      uses: actions/upload-artifact@v2
+      with:
+        name: code
+        path: .
 
-      - name: Build app
-        run: sh ci/build-app.sh
+  Build:
+    runs-on: ubuntu-lastest
+    needs: [Clone-down]
+    container: gradle:6-jdk11
+    steps:
+    - name Download code
+      uses: actions/download-artifact@v2
+      with:
+        name: code
+        path: .
+    - name: Build app
+      run: sh ci/build-app.sh
 
-      - name: Test
-        run: sh ci/unit-test-app.sh
+    - name: Test
+      run: sh ci/unit-test-app.sh
 
-      - name: Upload Repo
-        uses: actions/upload-artifact@v2
-        with:
-          name: code
-          path: .
+    - name: Upload Repo
+      uses: actions/upload-artifact@v2
+      with:
+        name: code
+        path: .
 
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
           name: code
           path: .
-          

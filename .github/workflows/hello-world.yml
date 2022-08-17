@@ -17,7 +17,7 @@ jobs:
     needs: [Clone-down]
     container: gradle:6-jdk11
     steps:
-    - name Download code
+    - name: Download code
       uses: actions/download-artifact@v2
       with:
         name: code
